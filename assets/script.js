@@ -1,3 +1,4 @@
+// déclaration de variables et constantes
 const slides = [
 	{
 		"image":"slide1.jpg",
@@ -20,13 +21,29 @@ const arrows = document.querySelectorAll('.arrow')
 const arrowRight = document.querySelector('.arrow_right')
 const arrowLeft = document.querySelector('.arrow_left')
 
-arrows.forEach(arrow => arrow.addEventListener('click', function() {
-	this.classList.contains('arrow_left') ? console.log('le click gauche est utlisé') : console.log('le click droit est utilisé')
-}))
+i = 0
 
+// fonctions
+function slide() {
+	// changer la source de l'image principale
+	myimg = document.getElementsByTagName("img")[1];
+	myimg.src = "./assets/images/slideshow/" + slides[i]["image"];
+	// changer le texte
+	document.getElementById('tagline').innerHTML = slides[i]["tagLine"];
+	//changer la bullet active
+	document.querySelector('.dot_selected').classList.remove('dot_selected');
+	document.getElementById("bullet-" + i).classList.add('dot_selected');
+}
+
+// arrows.forEach(arrow => arrow.addEventListener('click', function() {
+// 	this.classList.contains('arrow_left') ? console.log('le click gauche est utlisé') : console.log('le click droit est utilisé')
+// }))
+
+// instructions
 for (var i = 0; i < slides.length; i++)
     {
         var li = document.createElement('li');
+		li.id = "bullet-" + i;
 		li.className = 'dot';
 		if ( i === 0) {
 			li.classList.add('dot_selected');
@@ -34,20 +51,24 @@ for (var i = 0; i < slides.length; i++)
 		document.getElementById('mydot').appendChild(li);
     }
 
-position = 0;
+
 arrowRight.addEventListener('click', function(){
-	if (position < slides.length - 1) {
-		position++;
+	// i = (i < 3) ? i + 1 : 3;
+	if (i < 3) {
+		i++;
+		slide();
 	} else {
-		position = 0
+		i = 0;
+		slide();
 	}
-	console.log(slides[position])
 	})
+
 arrowLeft.addEventListener('click', function(){
-	if (position > 0) {
-		position--;
+	if (i > 0) {
+		i--;
+		slide();
 	} else {
-		position = slides.length - 1
+		i = 3;
+		slide();
 	}
-	console.log(slides[position])
 	})
