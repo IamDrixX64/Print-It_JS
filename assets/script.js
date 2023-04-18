@@ -35,10 +35,6 @@ function slide() {
 	document.getElementById("bullet-" + i).classList.add('dot_selected');
 }
 
-// arrows.forEach(arrow => arrow.addEventListener('click', function() {
-// 	this.classList.contains('arrow_left') ? console.log('le click gauche est utlisé') : console.log('le click droit est utilisé')
-// }))
-
 // instructions
 for (var i = 0; i < slides.length; i++)
     {
@@ -50,7 +46,6 @@ for (var i = 0; i < slides.length; i++)
 		}
 		document.getElementById('mydot').appendChild(li);
     }
-
 
 arrowRight.addEventListener('click', function(){
 	// i = (i < 3) ? i + 1 : 3;
